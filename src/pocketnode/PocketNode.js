@@ -40,7 +40,14 @@ class PocketNode {
 
         logger.info(this.localizationManager.getPhrase("loading"));
 
+<<<<<<< HEAD
         new Server(this, this.localizationManager, logger, paths);
+=======
+        let server = new Server(this, logger, paths);
+        if(process.argv.join(" ").indexOf("--travis-build") !== -1){
+            server.shutdown();
+        }
+>>>>>>> PocketNode/master
     }
 }
 

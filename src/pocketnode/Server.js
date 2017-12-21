@@ -4,6 +4,7 @@ const ConfigTypes = pocketnode("utils/Config").Types;
 
 const PluginManager = pocketnode("plugin/PluginManager");
 const SourcePluginLoader = pocketnode("plugin/SourcePluginLoader");
+const ScriptPluginLoader = pocketnode("plugin/ScriptPluginLoader");
 
 const RakNetServer = (process.argv.length === 3 && process.argv[2] === "LOCAL" ? require("../../../RakNet") : require("raknet"));
 
@@ -11,8 +12,12 @@ const CommandMap = pocketnode("command/CommandMap");
 const ConsoleCommandReader = pocketnode("command/ConsoleCommandReader");
 const HelpCommand = pocketnode("command/defaults/HelpCommand");
 const StopCommand = pocketnode("command/defaults/StopCommand");
+<<<<<<< HEAD
 const MakePlugin = pocketnode("command/defaults/MakePlugin");
 //const SayCommand = pocketnode("command/defaults/SayCommand");
+=======
+const PluginsCommand = pocketnode("command/defaults/PluginsCommand");
+>>>>>>> PocketNode/master
 
 const Player = pocketnode("Player");
 
@@ -91,6 +96,7 @@ class Server {
 
         this.interfaces.PluginManager = new PluginManager(this);
         this.interfaces.PluginManager.registerLoader(SourcePluginLoader);
+        this.interfaces.PluginManager.registerLoader(ScriptPluginLoader);
         this.interfaces.PluginManager.loadPlugins(this.getPluginPath());
         this.interfaces.PluginManager.enablePlugins();
 
@@ -107,9 +113,13 @@ class Server {
     registerDefaultCommands(){
         this.getCommandMap().registerCommand(new HelpCommand());
         this.getCommandMap().registerCommand(new StopCommand());
+<<<<<<< HEAD
         this.getCommandMap().registerCommand(new MakePlugin());
         //this.getCommandMap().registerCommand(new SayCommand());
         //this.getCommandMap().registerCommand(new (pocketnode("command/defaults/ListCommand"))());
+=======
+        this.getCommandMap().registerCommand(new PluginsCommand());
+>>>>>>> PocketNode/master
     }
 
     /**
@@ -181,6 +191,10 @@ class Server {
      */
     getCommandMap(){
         return this.interfaces.CommandMap;
+    }
+
+    getPluginManager(){
+        return this.interfaces.PluginManager;
     }
 
     /**
