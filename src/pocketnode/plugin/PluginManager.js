@@ -51,7 +51,8 @@ class PluginManager {
                             return plugin;
                         }
                     }catch(e){
-                        this.server.getLogger().critical("Error trying to load " + manifest.getName() + ": " + e);
+                        this.server.getLogger().critical("Error trying to load " + manifest.getName());
+                        this.server.getLogger().logError(e);
                         return null;
                     }
                 }
@@ -107,7 +108,8 @@ class PluginManager {
                             plugins.set(name, file);
                         }
                     }catch(e){
-                        this.server.getLogger().error("There was an error loading a plugin.", e);
+                        this.server.getLogger().error("There was an error loading a plugin.");
+                        this.server.getLogger().logError(e);
                     }
                 });
             }
@@ -140,8 +142,8 @@ class PluginManager {
 
             if(pluginApi[1].toUpperCase() !== serverApi[1].toUpperCase()){}
 
-            let pluginNumbers = pluginApi[0].split(".").concat(["0", "0"]).map(v=>{return parseInt(v)});
-            let serverNumbers = serverApi[0].split(".").map(v=>{return parseInt(v)});
+            let pluginNumbers = pluginApi[0].split(".").concat(["0", "0"]).map(v => parseInt(v));
+            let serverNumbers = serverApi[0].split(".").map(v => parseInt(v));
 
             if(pluginNumbers[0] !== serverNumbers[0]) continue;
 
