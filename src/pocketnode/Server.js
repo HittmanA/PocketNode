@@ -21,6 +21,8 @@ const ResourcePackManager = pocketnode("resourcepacks/ResourcePackManager");
 
 const SFS = pocketnode("utils/SimpleFileSystem");
 
+const NBTParser = pocketnode("nbt/NBTParser");
+
 class Server {
     initVars(){
         this.PocketNode = {};
@@ -29,12 +31,12 @@ class Server {
         this._bannedNames = {};
         this._ops = {};
         this._whitelist = {};
-        
+
         this._running = true;
         this._stopped = false;
 
         this._pluginManager = {};
-        
+
         this._scheduler = {}; //todo
 
         this._tickCounter = 0;
@@ -51,18 +53,18 @@ class Server {
         this._commandMap = {};
 
         this._resourcePackManager = {};
-        
+
         this._onlineMode = false;
 
         this._raknetAdapter = {};
-        
+
         this._serverId = Math.floor((Math.random() * 99999999)+1);
 
         this._paths = {};
         this._config = {};
 
         this._maxPlayers = -1;
-        
+
         this._players = new PlayerList();
         this._loggedInPlayers = new PlayerList();
         this._playerList = new PlayerList();
@@ -138,6 +140,8 @@ class Server {
         //levels load here
 
         //enable plugins POSTWORLD
+
+        new NBTParser();
 
         this.start();
     }

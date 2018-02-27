@@ -1,14 +1,17 @@
 const Tag = pocketnode("/nbt/tags/Tag.js");
 
 class EndTag extends Tag {
-    constructor(){
-        super(0x00);
+    constructor(buffer){
+        super(buffer);
+        this.setPayload();
+        super.setChild();
     }
 
-    setPayload(buffer){
+    setPayload(){
+        let buffer = super.getBuffer();
         if(buffer instanceof Array){
-            buffer.shift();
-            return {payload: null, buffer: buffer};
+            //buffer.shift();
+            super.setPayloadContent(buffer);
         }
     }
 }

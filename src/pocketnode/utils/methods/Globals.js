@@ -230,3 +230,44 @@ global.createInterval = function(fn, interval){
         this.stop = () => clearTimeout(this.timer);
     });
 };
+
+/**
+ * Convert hex to decimal
+ * @param hex       {Number}
+ */
+global.hexToDec = function(hex){
+    return parseInt(hex, 16);
+}
+
+/**
+ * Convert decimal to hex
+ * @param dec       {Number}
+ */
+global.decToHex = function(dec){
+    return dec.toString(16);
+}
+
+/**
+ * Convert hex to ASCII
+ * @param hex       {Number}
+ */
+global.hexToASCII = function(hex) {
+    var hexx = hex.toString();//force conversion
+    var str = '';
+    for (var i = 0; i < hexx.length; i += 2)
+        str += String.fromCharCode(parseInt(hexx.substr(i, 2), 16));
+    return str;
+}
+
+/**
+ * Convert ASCII to hex
+ * @param str       {String}
+ */
+global.asciiToHex = function(str) {
+  var arr = [];
+  for (var i = 0, l = str.length; i < l; i ++) {
+    var hex = Number(str.charCodeAt(i)).toString(16);
+    arr.push(hex);
+  }
+  return arr.join('');
+}
