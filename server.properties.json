@@ -1,0 +1,10 @@
+{
+    "motd": "PocketNode Server",
+    "ip": "0.0.0.0",
+    "port": "19132",
+    "whitelist": "false",
+    "max_players": "20",
+    "gamemode": "0",
+    "is_debugging": true,
+    "language": "es"
+}
